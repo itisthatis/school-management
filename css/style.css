@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.bd-green-700{
+    background-color: #0f5132;
+}
+
+.register-form{
+    padding: 32px;
+    h2{
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 30px;
+        font-weight: 300;
+        text-align: center;
+        margin-right: 40px;
+    
+        span{
+            font-weight: 700;
+            letter-spacing: 14px;
+        }
+    }
+    .title{
+        display: grid;
+        align-items: center;
+        height: calc(100vh - 120px);
+    }
+} 
