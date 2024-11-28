@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+
+    <title>Login Form</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="background-overlay"></div>
+    <div class="content">
+      <section class="navbar-section login">
+        <nav class="navbar navbar-expand-lg navbar-dark bd-green-700">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">School Management</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </nav>
+    </section>
+
+    <!-- Form -->
+
+    <section class="register-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="title">
+                     <h2>Login<br><span>Form</span></h2>
+                    </div>
+                 </div>
+                 <div class="col-md-6">
+                     <div class="title">
+                        <form method="post" id="login">
+                            <div class="mb-3">
+                              <label class="form-label fs-5">Name</label>
+                              <input type="text" class="form-control" id="name">
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="form-label fs-5">Password</label>
+                              <input type="password" class="form-control" id="password">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <input type="radio" id="teacher" name="select" value="teacher">
+                                <label for="teacher" class="fs-5">Teacher</label>
+                                <input type="radio" id="student" name="select" value="student">
+                                <label for="student" class="fs-5">Student</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    
+
+    <script>
+        /* document.querySelectorAll('input[name="select"]').forEach((radio) => {
+        radio.addEventListener('change', () => {
+        const selectedValue = document.querySelector('input[name="select"]:checked').value;
+        console.log(selectedValue);
+    });
+}); */
+        
+        document.getElementById('login').addEventListener('submit',function(event){
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            const selectedValue = document.querySelector('input[name="select"]:checked').value;
+            
+
+
+            fetch('http://localhost:8000/login', { 
+            headers:{
+                'content-type':'application/json'
+            },
+            method:'post',
+            body:JSON.stringify({
+            name: name,
+            password: password,
+            selectedValue: selectedValue
+
+        })
+        })
+        .then((res)=>{console.log(res.json())})
+        .catch((err)=>{console.log("No user found",err)})
+        }); 
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
